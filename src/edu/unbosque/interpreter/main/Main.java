@@ -1,4 +1,4 @@
-package edu.unbosque.compiler.main;
+package edu.unbosque.interpreter.main;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,9 +7,9 @@ import java.io.FileWriter;
 import java.io.Reader;
 import java.io.StringReader;
 
-import edu.unbosque.compiler.ast.Program;
-import edu.unbosque.compiler.lexer.*;
-import edu.unbosque.compiler.parser.*;
+import edu.unbosque.interpreter.ast.Program;
+import edu.unbosque.interpreter.lexer.*;
+import edu.unbosque.interpreter.parser.*;
 import java_cup.runtime.Symbol;
 
 

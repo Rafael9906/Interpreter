@@ -1,4 +1,4 @@
-package edu.unbosque.compiler.ast;
+package edu.unbosque.interpreter.ast;
 
 public class IfInstruction extends Instruction {
 	

@@ -1,6 +1,6 @@
-package edu.unbosque.compiler.lexer;
+package edu.unbosque.interpreter.lexer;
 import java_cup.runtime.Symbol;
-import edu.unbosque.compiler.parser.*;
+import edu.unbosque.interpreter.parser.*;
       
 %%
    
