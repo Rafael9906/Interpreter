@@ -1,7 +1,7 @@
-package edu.unbosque.compiler.parser;
+package edu.unbosque.interpreter.parser;
 import java_cup.runtime.*;
-import edu.unbosque.compiler.ast.*;
-import edu.unbosque.compiler.ast.Number;
+import edu.unbosque.interpreter.ast.*;
+import edu.unbosque.interpreter.ast.Number;
 
 parser code {: 
 	SymbolTable st = new SymbolTable();

@@ -1,4 +1,4 @@
-package edu.unbosque.compiler.ast;
+package edu.unbosque.interpreter.ast;
 
 public abstract class Instruction implements AST {
 	
