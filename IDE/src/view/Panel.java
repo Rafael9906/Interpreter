@@ -67,7 +67,7 @@ public class Panel extends JPanel{
         
         fileMenu = new JMenu("File");
         
-        nFile = new JMenuItem("File...");
+        nFile = new JMenuItem("New File...");
         oFile = new JMenuItem("Open File...");
         save = new JMenuItem("Save..");
         saveA = new JMenuItem("Save As...");
