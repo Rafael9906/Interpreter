@@ -1,0 +1,4 @@
+x = 1000;
+y = 2000;
+
+Si x<y Entonces Escribir x; SiNo Escribir y; Fin;

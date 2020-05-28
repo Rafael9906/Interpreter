@@ -1,0 +1,15 @@
+<Programa>        ::=  	<Instrucciones>
+<Instrucciones>   ::= 	<Instrucciones>;<Instruccion> | < Instruccion>
+<Instruccion>     ::= 	<Condicional> | <Ciclo> | <Asignacion> | <Leer> | <Escribir>
+<Condicional>     ::= 	Si<Expresion>Entonces<Instrucciones>Fin | Si<Expresion>Entonces<Instrucciones>SiNo<Instrucciones>Fin
+<Ciclo>           ::= 	Repita<Instrucciones> HastaQue<Expresion> 
+<Asignacion>      ::= 	Variable = <Expression>
+<Leer>            ::= 	Leer Variable
+<Escribir>        ::= 	Escribir <Expresion>
+<Expression>      ::= 	<ExpresionSimple><Comparador><ExpresionSimple> | <ExpresionSimple>
+<Comparador>      ::= 	< | ==
+<ExpresionSimple> ::= 	<ExpresionSimple><Operador><Termino> | <Termino>
+<Operador>        ::= 	+ | -
+<Termino>         ::= 	<Termino><MulOperador><Factor> | <Factor>
+<MulOperador>     ::= 	* | /
+<Factor>          ::= 	(<Expresion>) | Numero  | Variable

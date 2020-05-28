@@ -1,0 +1,8 @@
+Leer x;
+Leer y;
+Escribir x;
+Escribir y;
+Leer z;
+Escribir z;
+w = 1+2*3+4;
+Escribir w;

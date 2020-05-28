@@ -1,0 +1,171 @@
+package edu.unbosque.compiler.parser;
+import java_cup.runtime.*;
+import edu.unbosque.compiler.ast.*;
+import edu.unbosque.compiler.ast.Number;
+
+parser code {: 
+	SymbolTable st = new SymbolTable();
+:};
+
+
+terminal String SI,ENTONCES,FIN,SINO,REPITA,HASTAQUE,LEER,ESCRIBIR;
+terminal String PCOMMA,LPAR,RPAR;
+terminal String VARIABLE, NUMBER;
+terminal String EQEQ, EQ,MINUS,PLUS,TIMES,DIV,LE,ME,LEQ,MEQ;
+
+non terminal IfInstruction CONDICIONAL;
+non terminal String CICLO;
+non terminal Expression EXPRESION;
+non terminal ArithmeticExpression ARITHEXPRESSION;
+non terminal Term TERMINO;
+non terminal Assignment ASIGNACION;
+non terminal ArithmeticOperator SUMOPERATOR, MULOPERATOR;
+non terminal BooleanOperator COMPARADOR;
+non terminal Program PROGRAMA;
+non terminal InstructionsList INSTRUCCIONES;
+non terminal Instruction INSTRUCCION, LEE, ESCRIB;
+non terminal Value FACTOR;
+non terminal Number NUMERO;
+non terminal Variable IDENTIFICADOR;
+
+ 
+PROGRAMA ::= INSTRUCCIONES:i
+			 {: RESULT = new Program(i); :}
+			 ;
+
+
+INSTRUCCIONES ::= INSTRUCCIONES:i INSTRUCCION:l
+				  {: RESULT = new InstructionsList(i,l); :}
+				  |
+				  INSTRUCCION:i
+				  {: RESULT = new InstructionsList(i); :}
+				  ;
+				  	
+
+INSTRUCCION ::= CONDICIONAL:c
+				{: RESULT = c;:}
+				PCOMMA
+				|
+				CICLO:ci
+				{: System.out.println(ci); :}
+				PCOMMA
+				|
+				ASIGNACION:a
+				{: RESULT = a; :}
+				PCOMMA
+				|
+				LEE:l
+				{: RESULT = l; :}
+				PCOMMA
+				|
+				ESCRIB:e
+				{: RESULT = e; :}
+				PCOMMA
+				;
+				
+
+CONDICIONAL ::= SI EXPRESION:e ENTONCES INSTRUCCIONES:i
+				{: RESULT = new IfInstruction(e,i); :}
+				FIN
+				|
+				SI EXPRESION:e ENTONCES INSTRUCCIONES:i SINO INSTRUCCIONES:sn
+				{: RESULT = new IfInstruction(e,i,sn);  :}
+				FIN
+				;
+				
+
+CICLO ::= REPITA INSTRUCCIONES:i HASTAQUE EXPRESION:e
+				 {: System.out.println(i); :}
+				 ;
+				 
+ASIGNACION ::= IDENTIFICADOR:i EQ EXPRESION:e
+			   {: RESULT = new Assignment(st,i,e); :}
+			   ;
+			   
+LEE ::= LEER IDENTIFICADOR:i
+			 {: RESULT = new Read(st,i); :}
+			 ;
+			 
+
+ESCRIB ::= ESCRIBIR IDENTIFICADOR:v
+		   {: RESULT = new Write(st,v); :}
+		   ;
+		   
+		   
+EXPRESION ::= ARITHEXPRESSION:a COMPARADOR:c ARITHEXPRESSION:b
+			  {: RESULT = new Expression(a,c,b); :}
+			  |
+			  ARITHEXPRESSION:a
+			  {: RESULT = new Expression(a); :}
+			  ;				
+			  
+
+COMPARADOR ::= EQEQ:eq
+			   {: RESULT = new BooleanOperator("=="); :}
+			   |
+			   LE:l 
+			   {:  RESULT = new BooleanOperator("<"); :}
+			   |
+			   LEQ:le
+			   {:  RESULT = new BooleanOperator("<="); :}
+			   |
+			   ME:m
+			   {:  RESULT = new BooleanOperator(">"); :}
+			   |
+			   MEQ:m
+			   {:  RESULT = new BooleanOperator(">="); :}
+			   ;
+			   
+			   
+ARITHEXPRESSION ::= ARITHEXPRESSION:a SUMOPERATOR:o TERMINO:t
+					{: RESULT = new ArithmeticExpression(a,o,t); :}
+					|
+					TERMINO:t
+					{: RESULT = new ArithmeticExpression(t); :}
+			 		;
+			 		
+			 		
+SUMOPERATOR ::= PLUS:p 
+			 {: RESULT = new ArithmeticOperator("+"); :}
+			 |
+			 MINUS:m
+			 {:  RESULT = new ArithmeticOperator("-"); :}
+			 ;
+			 
+			 
+TERMINO ::= TERMINO:t MULOPERATOR:m FACTOR:f
+			{: RESULT = new Term(t,m,f); :}
+			|
+			FACTOR:f
+			{: RESULT = new Term(f); :}
+			;
+			
+
+MULOPERATOR ::= TIMES:t
+				{: RESULT = new ArithmeticOperator("*"); :}
+				|
+				DIV:d
+				{: RESULT = new ArithmeticOperator("/"); :}
+				;
+				
+				
+FACTOR ::= LPAR EXPRESION:e RPAR
+		   {: System.out.println(e); :}
+		   |
+		   NUMERO:n
+		   {: RESULT = n; :}
+		   |
+		   IDENTIFICADOR:i
+		   {: RESULT = i; :}
+		   ;
+		   
+
+
+NUMERO ::= NUMBER:n
+		   {: RESULT = new Number(n); :}
+		   ;
+
+
+IDENTIFICADOR ::= VARIABLE:v
+		   		  {: RESULT = new Variable(v); st.enter(RESULT); :}
+		   		  ;
