@@ -10,14 +10,26 @@ import org.fife.ui.rsyntaxtextarea.*;
  *
  * This example uses RSyntaxTextArea 3.0.5.
  */
-public class Ide1 extends JFrame {
+public class Ide extends JFrame {
 
-    public Ide1() {
+    public Ide() {
 
         JPanel cp = new JPanel(new BorderLayout());
 
         RSyntaxTextArea textArea = new RSyntaxTextArea(20, 60);
-        textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
+	    textArea.setFont(new Font("Monospaced",Font.PLAIN,20));
+
+        
+        //textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
+        
+        try {
+	    	  AbstractTokenMakerFactory atmf = (AbstractTokenMakerFactory)TokenMakerFactory.getDefaultInstance();
+	    	  atmf.putMapping("text/myLanguage", "Colores.Color");
+	    	  textArea.setSyntaxEditingStyle("text/myLanguage");
+	      }
+	      catch(Exception e) {
+	    	  
+	      }
         textArea.setCodeFoldingEnabled(true);
         RTextScrollPane sp = new RTextScrollPane(textArea);
         cp.add(sp);
@@ -25,7 +37,7 @@ public class Ide1 extends JFrame {
         setJMenuBar(createMenuBar(textArea));
 
         setContentPane(cp);
-        setTitle("Edit Menu Demo");
+        setTitle("IDE");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         pack();
         setLocationRelativeTo(null);
@@ -53,8 +65,12 @@ public class Ide1 extends JFrame {
         editMenu.addSeparator();
         editMenu.add(createMenuItem(RTextArea.getAction(RTextArea.SELECT_ALL_ACTION)));
         
+        JMenu runMenu = new JMenu("Run");
+        runMenu.add("Run...");
+        
         menuBar.add(fileMenu);
         menuBar.add(editMenu);
+        menuBar.add(runMenu);
 
         return menuBar;
     }
@@ -69,7 +85,7 @@ public class Ide1 extends JFrame {
         // Start all Swing applications on the EDT.
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new Ide1().setVisible(true);
+                new Ide().setVisible(true);
             }
         });
     }
