@@ -10,10 +10,9 @@ public class Frame extends JFrame{
 	
 	public void initComponents() {
 		
-		setSize(890,480);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		setResizable(true);
+		setResizable(false);
 		
 		Panel panel = new Panel(this);
 		getContentPane().add(panel);

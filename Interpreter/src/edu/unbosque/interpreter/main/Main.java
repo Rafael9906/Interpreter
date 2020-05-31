@@ -15,11 +15,12 @@ import java_cup.runtime.Symbol;
 
 public class Main {
 	
-	public static void main(String[] args) throws Exception {
+	public static void main(String path) throws Exception {
 		Reader reader = null;
 		
-		File input = new File("test1.txt");
-		
+		//File input = new File("test1.txt");
+		File input = new File(path);
+				
 		reader = new FileReader(input);
 		
 		Lexer scanner = new Lexer(reader);
@@ -38,18 +39,3 @@ public class Main {
 	
 	static int contexterror = 0;
 }
-
-
-
-//Symbol tok = null;  
-//do{
-//	try {
-//		tok = lex.next_token();
-//		if(tok.value.toString() != null)
-//			System.out.println(tok);
-//	} catch (Error e) {
-//		System.out.println(e.getMessage() + " in Line: " );
-//		break;
-//	} 
-//}
-//while(tok != null);
