@@ -9,13 +9,7 @@ public class Frame extends JFrame{
 	}
 	
 	public void initComponents() {
-		
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
-		setResizable(false);
-		
 		Panel panel = new Panel(this);
-		getContentPane().add(panel);
 	}
 
 }
