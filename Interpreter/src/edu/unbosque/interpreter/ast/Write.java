@@ -1,5 +1,7 @@
 package edu.unbosque.interpreter.ast;
 
+import javax.swing.JOptionPane;
+
 public class Write extends Instruction {
 	
 	private SymbolTable st;
@@ -30,10 +32,12 @@ public class Write extends Instruction {
 		
 		Variable v = st.exists(this.v.getName());
 		if(v != null) {
-			System.out.print("\n>> " + v.getName() + " = " + v.interpret());
+			JOptionPane.showMessageDialog(null, v.getName() + " = " + v.interpret());
+			//System.out.print("\n>> " + v.getName() + " = " + v.interpret());
 		}
 		else {
-			System.out.print("\nERROR. Impossible Print. Variable " + this.v.getName() + " don't exists.");
+			JOptionPane.showMessageDialog(null, "\nERROR. Impossible Print. Variable " + this.v.getName() + " don't exists.");
+			//System.out.print("\nERROR. Impossible Print. Variable " + this.v.getName() + " don't exists.");
 		}
 		return 0;
 	}
