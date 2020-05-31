@@ -14,7 +14,7 @@ terminal String VARIABLE, NUMBER;
 terminal String EQEQ, EQ,MINUS,PLUS,TIMES,DIV,LE,ME,LEQ,MEQ;
 
 non terminal IfInstruction CONDICIONAL;
-non terminal String CICLO;
+non terminal WhileInstruction CICLO;
 non terminal Expression EXPRESION;
 non terminal ArithmeticExpression ARITHEXPRESSION;
 non terminal Term TERMINO;
@@ -47,7 +47,7 @@ INSTRUCCION ::= CONDICIONAL:c
 				PCOMMA
 				|
 				CICLO:ci
-				{: System.out.println(ci); :}
+				{: RESULT = ci; :}
 				PCOMMA
 				|
 				ASIGNACION:a
@@ -75,7 +75,7 @@ CONDICIONAL ::= SI EXPRESION:e ENTONCES INSTRUCCIONES:i
 				
 
 CICLO ::= REPITA INSTRUCCIONES:i HASTAQUE EXPRESION:e
-				 {: System.out.println(i); :}
+				 {: RESULT = new WhileInstruction(i,e); :}
 				 ;
 				 
 ASIGNACION ::= IDENTIFICADOR:i EQ EXPRESION:e
@@ -150,7 +150,7 @@ MULOPERATOR ::= TIMES:t
 				
 				
 FACTOR ::= LPAR EXPRESION:e RPAR
-		   {: System.out.println(e); :}
+		   {: RESULT = e; :}
 		   |
 		   NUMERO:n
 		   {: RESULT = n; :}

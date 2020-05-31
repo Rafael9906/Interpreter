@@ -5,9 +5,9 @@
 
 package edu.unbosque.interpreter.parser;
 
+import java_cup.runtime.*;
 import edu.unbosque.interpreter.ast.*;
 import edu.unbosque.interpreter.ast.Number;
-import java_cup.runtime.*;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
@@ -317,8 +317,8 @@ class CUP$parser$actions {
               Instruction RESULT =null;
 		int cileft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int ciright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		String ci = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
- System.out.println(ci); 
+		WhileInstruction ci = (WhileInstruction)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+ RESULT = ci; 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("NT$1",18, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -331,7 +331,7 @@ class CUP$parser$actions {
                 RESULT = (Instruction) ((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
 		int cileft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
 		int ciright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
-		String ci = (String)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
+		WhileInstruction ci = (WhileInstruction)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("INSTRUCCION",11, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
@@ -488,14 +488,14 @@ class CUP$parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 18: // CICLO ::= REPITA INSTRUCCIONES HASTAQUE EXPRESION 
             {
-              String RESULT =null;
+              WhileInstruction RESULT =null;
 		int ileft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
 		int iright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
 		InstructionsList i = (InstructionsList)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
 		int eleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int eright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		Expression e = (Expression)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		 System.out.println(i); 
+		 RESULT = new WhileInstruction(i,e); 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("CICLO",1, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-3)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -744,7 +744,7 @@ class CUP$parser$actions {
 		int eleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
 		int eright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
 		Expression e = (Expression)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
-		 System.out.println(e); 
+		 RESULT = e; 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("FACTOR",14, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
