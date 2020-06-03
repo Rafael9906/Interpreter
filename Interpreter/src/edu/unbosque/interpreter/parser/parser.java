@@ -792,7 +792,7 @@ class CUP$parser$actions {
 		int vleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int vright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String v = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		 RESULT = new Variable(v); st.enter(RESULT); 
+		 RESULT = new Variable(v,st); st.enter(RESULT); 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("IDENTIFICADOR",16, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;

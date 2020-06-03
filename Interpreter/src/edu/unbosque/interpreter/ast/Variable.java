@@ -4,10 +4,13 @@ public class Variable extends Value{
 	
 	private String name;
 	private int value;
+	private SymbolTable st;
 	
-	public Variable(String name) {
+	
+	public Variable(String name, SymbolTable st) {
 		this.name = name;
 		this.value = 0;
+		this.st = st;
 	}
 
 	public String getName() {
@@ -27,12 +30,15 @@ public class Variable extends Value{
 	}
 	
 	public int interpret() {
-		return this.value;
+		Variable v = st.exists(name);
+		return v.getValue();
 	}
+	
 	
 	@Override
 	public String toString() {
-		return "[" + this.name + ":" + this.value + "]";
+		Variable v = st.exists(name);
+		return "[" + this.name + ":" + v.getValue() + "]";
 	}
 	
 

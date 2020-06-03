@@ -47,7 +47,7 @@ public class WhileInstruction extends Instruction{
 		do {
 			insts.interpret();
 		}
-		while(exp.interpret() == 1);
+		while(exp.interpret() == 0);
 			
 		return 0;
 	}

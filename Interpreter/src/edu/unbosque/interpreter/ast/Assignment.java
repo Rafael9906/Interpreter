@@ -28,11 +28,12 @@ public class Assignment extends Instruction{
 		
 	}
 
-
+	
 	@Override
 	public int interpret() {
+		Variable v = st.exists(this.v.getName());
 		v.setValue(e.interpret());
-		System.out.println("\nASSIGN: " + st);
+		System.out.println("\nASSIGN: " + st.toString());
 		return 0;
 	}
 	

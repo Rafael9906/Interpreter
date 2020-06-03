@@ -34,13 +34,14 @@ public class Read extends Instruction{
 	public int interpret() {
 		
 		int n = Integer.parseInt(JOptionPane.showInputDialog("\nEnter " + this.v.getName() + ": "));
-		v.setValue(n);
+		//v.setValue(n);
 		//JOptionPane.showMessageDialog(null, st);
+		Variable v = st.exists(this.v.getName());
 
 		//Scanner input = new Scanner(System.in);
 		//System.out.println("\nEnter " + this.v.getName() + ": ");
-		//int n = input.nextInt();
-		//v.setValue(n);
+		
+		v.setValue(n);
 		
 		System.out.println("\nRead " + st);
 		return v.interpret();
